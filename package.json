@@ -1,0 +1,25 @@
+{
+  "name": "checkpoint",
+  "version": "1.0.0",
+  "description": "An app to make my checkpoints",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "nodemon --exec 'electron .'",
+    "build": "electron-builder -w zip"
+  },
+  "keywords": [
+    "checkpoint",
+    "norber"
+  ],
+  "author": "Wildiney Di Masi",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^8.2.3",
+    "electron-builder": "^22.5.1"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "puppeteer": "^3.0.1"
+  }
+}
