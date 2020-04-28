@@ -86,13 +86,14 @@ module.exports = class Norber {
     async checkpoint() {
         console.log("Making Checkpoint")
         console.log("Login")
-        this.login()
+        await this.login()
         await this.page.waitForSelector("a#menu2.menuBotao")
         console.log("Logged")
-        await page.click('a#menu2.menuBotao')
-        await page.click('#menu2_Item1 a')
+        await this.page.click('a#menu2.menuBotao')
 
-        const newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));
+        const newPagePromise = new Promise(x => this.browser.once('targetcreated', target => x(target.page())));
+        await this.page.click('#menu2_Item1 a')
+
         const popup = await newPagePromise;
         await popup.waitFor(2000)
 
@@ -102,10 +103,10 @@ module.exports = class Norber {
 
             return { data, hour }
         })
-        popup.click('#Button1')
-        await popup.waitFor(5000)
+        // popup.click('#Button1')
+        await popup.waitFor(2000)
 
-        await browser.close()
+        await this.browser.close()
         return values
     }
 }

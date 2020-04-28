@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "dev": "nodemon --exec 'electron .'",
+    "dev": "nodemon --exec electron .",
     "build": "electron-builder -w zip"
   },
   "keywords": [
