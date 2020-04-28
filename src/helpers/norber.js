@@ -1,7 +1,5 @@
 const config = require('../config/config.js')
 
-const fs = require('fs')
-const path = require('path')
 const puppeteer = require('puppeteer')
 
 module.exports = class Norber {
@@ -103,7 +101,7 @@ module.exports = class Norber {
 
             return { data, hour }
         })
-        // popup.click('#Button1')
+        popup.click('#Button1')
         await popup.waitFor(2000)
 
         await this.browser.close()
