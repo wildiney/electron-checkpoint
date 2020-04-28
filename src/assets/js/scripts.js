@@ -46,7 +46,6 @@ ipcRenderer.on('checkpoint:return', (event, arg) => {
         td_saida.innerHTML = saida
         return
     }
-    fillHours()
 })
 
 form_checkpoint.addEventListener('submit', (event) => {

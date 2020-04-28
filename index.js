@@ -60,7 +60,6 @@ app.on('ready', () => {
     })
     tray.setContextMenu(contextMenu)
 })
-
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()
@@ -71,7 +70,6 @@ app.on('activate', () => {
         createWindow()
     }
 })
-
 ipcMain.on('checkpoint:add', (event, arg) => {
     console.log('recebido')
     const norber = new Norber()
@@ -87,3 +85,12 @@ ipcMain.on('checkpoint:add', (event, arg) => {
 
 
 })
+
+setInterval(() => {
+    console.log("interval")
+    const norber = new Norber()
+    norber.getCheckpoints().then((checkpoint) => {
+        console.log("checkpoint", checkpoint)
+        mainWindow.webContents.send('checkpoint:result', checkpoint)
+    })
+}, 20 * 60 * 1000)
