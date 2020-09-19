@@ -1,0 +1,21 @@
+.entrada{
+    width:100%;
+    display:flex;
+    margin-bottom:.5rem;
+    font-family: Cairo, "Segoe UI", sans-serif;
+    line-height: 1.2rem;
+}
+
+.entrada span{
+    display:block;
+    width: 70%;
+    
+}
+.entrada span:nth-child(1){
+    padding-top:.5rem;
+}
+.entrada span:nth-child(2){
+    width: 30%;
+    font-size: 1.5rem;
+    text-align: right;
+}

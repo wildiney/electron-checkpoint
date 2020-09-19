@@ -1,0 +1,39 @@
+
+.container h2 {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    padding:0;
+    margin:0 0 .8rem 0;
+    font-family: Cairo, "Segoe UI", sans-serif;
+  }
+
+  .form_group{
+    width: auto;
+    position: relative;
+    padding-bottom: .5rem;
+  }
+  .form_group input, 
+  .form_group select{
+    display:block;
+    width: 100%;
+    padding:.2rem;
+    border: 1px solid gray;
+    border-radius: .2rem;
+  }
+
+
+
+.btn_config{
+  position: absolute;
+  border:none;
+  right: 0px;
+  top:-5px;
+  font-family: Cairo, "Segoe UI", sans-serif;
+  font-size:1.3rem;
+  display:block;
+  background: transparent;
+  color:white;
+  font-weight: 400;
+  cursor: pointer;
+
+}

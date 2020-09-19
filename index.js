@@ -27,7 +27,7 @@ function createWindow() {
     })
 
     mainWindow.loadFile(path.join(__dirname, 'src', 'index.html'))
-    // mainWindow.webContents.openDevTools({mode:"detach"})
+    mainWindow.webContents.openDevTools({ detached: true })
 
 }
 
