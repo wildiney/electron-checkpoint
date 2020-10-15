@@ -1,12 +1,10 @@
 # Checkpoint
+
 ## How to use
-Before compiling or execute, create the file /src/config/config.js and include your credentials like the exemple below.
+
+Now... just run
 
 ```javascript
-module.exports = {
-    "url": "",
-    "company": '1',
-    "user": "",
-    "pass": ""
-}
+npm install
+npm run build
 ```

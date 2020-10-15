@@ -1,71 +1,180 @@
 *,
-*::after,
-*::before{
-    box-sizing: border-box;
+::after,
+::before {
+  box-sizing: border-box;
 }
+
 html,
 body {
+  width: 100%;
   height: 100%;
-  width: 100%;
-  margin:0;
+  margin: 0;
   padding: 0;
-  font-size: 62.5%;
-  font-family: Arial, Helvetica, sans-serif;
 }
-body {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding:10px 20px;
-}
-button {
-  width: 100%;
-  margin: 0 auto;
-  padding: 10px 20px;
-}
-#hour{
-    color:white;
-    font-size: 5rem;
-    text-align: center;
-    margin-bottom: 15px;
-}
-table{
-    width: 100%;
-    border: none;
-}
-table td{
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    padding: 5px 0;
-    height: 32px;
-}
-table td:nth-child(1){
-    text-transform: uppercase;
-    font-size: 1.1rem;
-}
-table td:nth-child(2){
-    font-size: 2rem;
-    text-align: right;
-}
-#loading{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top:0;
-    left: 0;
-    z-index: 99;
-    background-color: rgba(0, 0, 0, 0.9);
 
-    font-family: Arial, Helvetica, sans-serif;
-    
-    color: white;
-    text-align: center;
-    display: none;
+body {
+  font-family: Exo, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#loading::after{
-    font-size: 2rem;
-    width: auto;
-    content:"Loading";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 37%;
+
+.container {
+  padding: 0.5rem 1rem;
+}
+
+header {
+  margin: 0 0 0.5rem 0;
+  padding: 0.6rem;
+  display: flex;
+  background-color: purple;
+}
+
+header .title {
+  width: 80%;
+}
+
+header nav {
+  width: 20%;
+  text-align: right;
+}
+
+header h1 {
+  margin: 0;
+  padding: 0.3rem 0 0 0;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  color: white;
+}
+
+header .btn_showConfig,
+header .btn_hideConfig {
+  border: none;
+  background: transparent url('../img/gear.png') center center no-repeat;
+}
+
+#checkpoint,
+#config {
+  display: none;
+}
+
+.periodos ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.periodos ul li {
+  display: flex;
+}
+
+.periodos ul li span {
+  width: 50%;
+}
+
+.periodos ul li span:nth-child(1) {
+  padding-top: 0.3rem;
+  font-size: 1rem;
+}
+.periodos ul li span:nth-child(2) {
+  text-align: right;
+  font-size: 1.5rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+#timeNow {
+  text-align: center;
+  font-size: 2.9rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.checkpoint_buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.checkpoint_buttons btn {
+  flex: 0;
+}
+
+.checkpoint_buttons button {
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 0.7rem;
+  cursor: pointer;
+  border: 1px solid purple;
+  border-radius: 0.3rem;
+}
+
+.form-group button,
+.checkpoint_buttons button:hover {
+  background-image: linear-gradient(
+    180deg,
+    rgba(128, 0, 128, 0.9),
+    rgba(128, 0, 128, 0.6)
+  );
+  color: white;
+  outline: none;
+}
+
+#modal {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 105vh;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 100;
+}
+
+.form-group {
+  display: flex;
+  padding-bottom: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  display: block;
+  width: 40%;
+  padding-top: 0.2rem;
+}
+
+.form-group input {
+  width: 100%;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+  padding: 0.3rem;
+}
+
+.form-group button {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+  transition: all 1s ease-out;
+}
+
+.show {
+  display: block;
+  transition: all 1s ease-out;
+}
+
+#loading {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+#loading:before {
+  content: 'Loading...';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
 }

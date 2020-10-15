@@ -1,38 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkpoint</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
     <script src="assets/js/scripts.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="loading"></div>
-    <table>
-        <tr>
-            <td>Entrada</td>
-            <td id="td_entrada"></td>
-        </tr>
-        <tr>
-            <td>Almoço</td>
-            <td id="td_almoco"></td>
-        </tr>
-        <tr>
-            <td>Retorno</td>
-            <td id="td_retorno"></td>
-        </tr>
-        <tr>
-            <td>Saída</td>
-            <td id="td_saida"></td>
-        </tr>
-    </table>
-    <hr>
-    <div id="hour">
-        00:00
-    </div>
-    <form id="form_checkpoint">
-        <button id="btn_checkpoint" type="submit">Checkpoint</button>
-    </form>
-</body>
+
+    <section id="config">
+      <header>
+        <div class="title"><h1>Configuration</h1></div>
+        <nav><input type="image" width="25" height="25" src="./assets/img/gear.png" id="btn_hideConfig"></input></nav>
+      </header>
+      <div class="container">
+        <div class="form-group">
+          <label>URL</label>
+          <input type="text" name="url" id="url" />
+        </div>
+        <div class="form-group">
+          <label>Company</label>
+          <input type="text" name="company" id="company" />
+        </div>
+        <div class="form-group">
+          <label>User</label>
+          <input type="text" name="user" id="user" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" id="password" />
+        </div>
+        <div class="form-group">
+          <button id="btn_save">salvar</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="checkpoint">
+      <header>
+        <div class="title"><h1>Checkpoint</h1></div>
+        <nav><input type="image" width="25" height="25" src="./assets/img/gear.png" id="btn_showConfig"></input></nav>
+      </header>
+      <div class="container">
+        <div class="periodos">
+          <ul>
+            <li><span>Entrada:</span><span id="entrada">00:00</span></li>
+            <li><span>Almoço:</span><span id="almoco">00:00</span></li>
+            <li><span>Retorno:</span><span id="retorno">00:00</span></li>
+            <li><span>Saída:</span><span id="saida">00:00</span></li>
+          </ul>
+        </div>
+        <hr />
+        <div id="timeNow">00:00</div>
+        <div class="checkpoint_buttons">
+          <button id="btn_checkpoint" type="submit">Checkpoint</button>
+          <button id="btn_update">Update</button>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
