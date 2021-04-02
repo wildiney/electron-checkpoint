@@ -11,12 +11,11 @@ class Scrapper {
     this.browser = ''
     this.page = ''
 
+    console.log(process.platform)
     if (process.platform === 'darwin') {
-      this.execPath =
-        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+      this.execPath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
     } else {
-      this.execPath =
-        'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+      this.execPath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
     }
   }
 
