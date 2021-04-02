@@ -1,11 +1,11 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu, screen } = require('electron')
+const { app, BrowserWindow, ipcMain, Tray, Menu, screen, nativeImage } = require('electron')
 const path = require('path')
 const debug = require('electron-debug')
 const Scrapper = require('./src/helpers/scrapper')
 
 debug({
   devToolsMode: 'detach',
-  showDevTools: true
+  showDevTools: false
 })
 
 let mainWindow
@@ -34,7 +34,7 @@ function createWindow () {
   })
 
   mainWindow.loadFile(path.join(__dirname, 'src', 'index.html'))
-  mainWindow.webContents.openDevTools({ mode: 'detach' })
+  // mainWindow.webContents.openDevTools({ mode: 'detach' })
 }
 
 app.on('ready', () => {
@@ -49,16 +49,17 @@ app.on('ready', () => {
     }
   ])
 
-  const tray = new Tray(path.join(__dirname, 'src', 'assets', 'img', 'clock.png'))
-  tray.setToolTip('Checkpoint')
-  tray.on('click', () => {
+  const iconPath = path.join(__dirname, 'src/assets/img/clock.png')
+  mainWindow.tray = new Tray(nativeImage.createFromPath(iconPath))
+  mainWindow.tray.setToolTip('Checkpoint')
+  mainWindow.tray.on('click', () => {
     if (mainWindow.isVisible()) {
       mainWindow.hide()
     } else {
       mainWindow.show()
     }
   })
-  tray.setContextMenu(contextMenu)
+  mainWindow.tray.setContextMenu(contextMenu)
 })
 
 app.on('window-all-closed', () => {
