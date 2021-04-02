@@ -19,7 +19,7 @@ const btnHideConfig = document.getElementById('btn_hideConfig')
 const btnSave = document.getElementById('btn_save')
 const timeNow = document.getElementById('timeNow')
 
-const userData = store.get('userData')
+// const userData = store.get('userData')
 
 const showConfig = () => {
   config.style.display = 'block'
@@ -33,6 +33,7 @@ const hideConfig = () => {
 
 btnCheckpoint.addEventListener('click', () => {
   loading.style.display = 'block'
+  const userData = store.get('userData')
   ipcRenderer.send('checkpoint:add', {
     url: userData.url,
     company: userData.company,
@@ -45,6 +46,7 @@ btnCheckpoint.addEventListener('click', () => {
 btnUpdate.addEventListener('click', () => {
   console.log('Btn Update')
   loading.style.display = 'block'
+  const userData = store.get('userData')
   ipcRenderer.send('checkpoint:get', {
     url: userData.url,
     company: userData.company,
@@ -134,6 +136,8 @@ const time = () => {
 const main = () => {
   setInterval(time, 1000)
   try {
+    const userData = store.get('userData')
+
     if (userData.user !== null) {
       checkpoint.style.display = 'block'
       hideConfig()
@@ -154,6 +158,7 @@ const main = () => {
       password: userData.password
     })
   } catch (e) {
+    showConfig()
     console.log('Not logged')
   }
   fillHours('00:00', '00:00', '00:00', '00:00')
