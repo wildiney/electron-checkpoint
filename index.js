@@ -16,7 +16,7 @@ function createWindow () {
     height: 350,
     frame: false,
     show: true,
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     darkTheme: true,
     skipTaskbar: true,
     webPreferences: {
