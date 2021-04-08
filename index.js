@@ -16,7 +16,7 @@ function createWindow () {
     height: 350,
     frame: false,
     show: true,
-    alwaysOnTop: false,
+    alwaysOnTop: true,
     darkTheme: true,
     skipTaskbar: true,
     webPreferences: {
@@ -78,14 +78,21 @@ ipcMain.on('checkpoint:add', (event, arg) => {
   console.log('recebido')
   const scrapper = new Scrapper(arg.user, arg.password, arg.company, arg.url)
 
-  scrapper.checkpoint().then((result) => {
-    event.sender.send('checkpoint:return', result)
+  scrapper
+    .checkpoint()
+    .then(
+      (result) => {
+        console.log('result', result)
+        event.sender.send('checkpoint:alert')
 
-    scrapper.getCheckpoints().then((checkpoint) => {
-      console.log('checkpoint', checkpoint)
-      mainWindow.webContents.send('checkpoint:result', checkpoint)
-    })
-  })
+        scrapper
+          .getCheckpoints()
+          .then((checkpoint) => {
+            console.log('checkpoint', checkpoint)
+            event.sender.send('checkpoint:return', checkpoint)
+          })
+          .catch((e) => e.message)
+      })
 })
 
 ipcMain.on('checkpoint:get', (event, arg) => {
@@ -95,7 +102,7 @@ ipcMain.on('checkpoint:get', (event, arg) => {
   scrapper
     .getCheckpoints()
     .then((result) => {
-      console.log('index.ts - results: ', result)
+      console.log('results: ', result)
       event.sender.send('checkpoint:return', result)
     })
     .catch((e) => e.message)
