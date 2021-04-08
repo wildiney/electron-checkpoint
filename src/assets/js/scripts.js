@@ -89,7 +89,11 @@ ipcRenderer.on('checkpoint:return', (event, arg) => {
 })
 
 ipcRenderer.on('checkpoint:alert', (event, arg) => {
-  alert('Checkpoint ok!')
+  if (arg.status === 'marked') {
+    alert('Checkpoint marked!')
+  } else {
+    alert('Checkpoint Error')
+  }
 })
 
 const formatHour = (hour) => {

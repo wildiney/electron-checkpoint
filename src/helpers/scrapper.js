@@ -123,7 +123,11 @@ class Scrapper {
       const data = document.getElementById('data').value
       const hour = document.querySelector('input[name=hora]').value
       console.log('data/hour', data, hour)
-      return { data, hour }
+      let status = 404
+      if (data !== undefined && hour !== undefined) {
+        status = 200
+      }
+      return { data, hour, status }
     })
     await popup.click('#Button1')
     await popup.waitForTimeout(2000)

@@ -83,7 +83,11 @@ ipcMain.on('checkpoint:add', (event, arg) => {
     .then(
       (result) => {
         console.log('result', result)
-        event.sender.send('checkpoint:alert')
+        if (result.status === 200) {
+          event.sender.send('checkpoint:alert', { status: 'marked' })
+        } else {
+          event.sender.send('checkpoint:alert', { status: 'error' })
+        }
 
         scrapper
           .getCheckpoints()
