@@ -80,8 +80,16 @@ ipcRenderer.on('checkpoint:getTimes', (event, arg) => {
 })
 
 ipcRenderer.on('checkpoint:return', (event, arg) => {
+  console.log('Return', arg)
+  if (arg.entrada === '00:00') {
+    arg.almoco = '00:00'
+  }
   fillHours(arg.entrada, arg.almoco, arg.retorno, arg.saida)
   loading.style.display = 'none'
+})
+
+ipcRenderer.on('checkpoint:alert', (event, arg) => {
+  alert('Checkpoint ok!')
 })
 
 const formatHour = (hour) => {
