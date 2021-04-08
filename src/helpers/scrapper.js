@@ -11,6 +11,8 @@ class Scrapper {
     this.browser = ''
     this.page = ''
 
+    this.headless = false
+
     console.log(process.platform)
     if (process.platform === 'darwin') {
       this.execPath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
@@ -32,9 +34,7 @@ class Scrapper {
   async extractLine (content, lineNumber) {
     const cleanContent = content.replace(/ {2,}/g, ' ')
     const line = cleanContent.split('\n')
-    console.log(line[lineNumber])
     const data = line[lineNumber].split(' ')
-    // const weekday = data[0]
     const date = data[1]
     const entrada = data[5].includes(':') ? data[5] : '00:00'
     const almoco = data[6].includes(':') ? data[6] : '00:00'
@@ -51,8 +51,6 @@ class Scrapper {
     })
     this.page = await this.browser.newPage()
     await this.page.goto(this.url)
-    // const html = await this.page.content()
-
     await this.page.select('select[name=requiredempresa]', this.company)
     await this.page.type('input[name=requiredusuario]', this.user, {
       delay: 20
@@ -94,13 +92,10 @@ class Scrapper {
     await popup.click('#Submit')
     const popup2 = await newPagePromise2
 
-    const allPages = await this.browser.pages()
-    console.log(allPages.length)
-
     await popup2.waitForSelector('pre')
     const content = await popup2.$eval('pre', (element) => element.innerHTML)
-    await this.browser.close()
     console.log('content', content)
+    await this.browser.close()
 
     const extractedData = await this.extractLine(content, 17)
     console.log('Extract Data', extractedData)
@@ -111,7 +106,7 @@ class Scrapper {
   async checkpoint () {
     console.log('Making Checkpoint')
     console.log('Login')
-    await this.login(true)
+    await this.login(this.headless)
     await this.page.waitForSelector('a#menu2.menuBotao')
     console.log('Logged')
     await this.page.click('a#menu2.menuBotao')
@@ -127,14 +122,15 @@ class Scrapper {
     const values = await popup.evaluate(() => {
       const data = document.getElementById('data').value
       const hour = document.querySelector('input[name=hora]').value
-
+      console.log('data/hour', data, hour)
       return { data, hour }
     })
-    popup.click('#Button1')
+    await popup.click('#Button1')
     await popup.waitForTimeout(2000)
 
     await this.browser.close()
     return values
   }
 }
+
 module.exports = Scrapper
